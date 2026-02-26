@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Convite de casa nova</title>
+        <link rel="stylesheet" href="estilo.css">
+    </head>
+    <body>
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope" id="envelope">
+                <div class="flap"></div>
+                <div class="letter">
+                    <p>Você recebeu um convite especial 💌</p>
+                    <span>Clique para abrir</span>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="convite-header">
+                <div class="brilho"></div>
+                <h1>Convite de Casa Nova</h1>
+                <p class="subtitulo">Uma nova etapa, um novo lar, e você faz parte disso 💛</p>
+            </div>
+            <div class="contador">
+                Faltam <span id="tempo"></span> para o grande dia 🎉
+            </div>
+                        <div class="detalhes">
+                <h1>Convite de Casa Nova</h1>
+                <p>Estamos muito felizes em anunciar que nos mudamos para uma nova casa! Gostaríamos de convidar você para celebrar conosco essa nova etapa da nossa vida.</p>
+                <p>Data: [Data do Evento]</p>
+                <p>Hora: [Hora do Evento]</p>
+                <p>Endereço: [Endereço da Nova Casa]</p>
+                <p>Será uma oportunidade maravilhosa para nos reunirmos, compartilharmos risadas e criarmos memórias inesquecíveis. Esperamos contar com a sua presença para tornar esse momento ainda mais especial.</p>
+                <p>Por favor, confirme sua presença até [Data de Confirmação] para que possamos organizar tudo da melhor forma possível.</p>
+                <p>Aguardamos ansiosamente para celebrar juntos!</p>
+            </div>
+            
+
+            <div class="confirmacao">
+                <h2>Confirme sua presença</h2>
+
+                <form>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+
+                    <select name="acompanhantes">
+                        <option value="">Acompanhantes</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+
+                    <select id="presenca" name="presenca" required>
+                        <option value="">Confirmar presença</option>
+                        <option value="sim">Sim, estarei presente</option>
+                        <option value="nao">Não poderei comparecer</option>
+                    </select>
+
+                    <button type="submit">Enviar Confirmação</button>
+                </form>
+                <div class="mensagem-sucesso" id="mensagemSucesso">
+                    🎉 Presença confirmada com sucesso!
+                </div>
+
+                <a href="https://lista.havan.com.br/Convidado/ItensListaPresente/916301" class="botao-link">      Lista de Presentes</a>
+            </div>
+                
+        </div>
+        <script>
+            const form = document.querySelector("form");
+            const mensagem = document.getElementById("mensagemSucesso");
+
+            form.addEventListener("submit", function(e){
+                e.preventDefault();
+
+                mensagem.classList.add("ativo");
+
+                form.reset();
+
+                setTimeout(() => {
+                    mensagem.classList.remove("ativo");
+                }, 4000);
+            });
+
+            const envelope = document.getElementById("envelope");
+            const wrapper = document.getElementById("envelopeWrapper");
+
+            envelope.addEventListener("click", () => {
+                envelope.classList.add("aberto");
+                setTimeout(() => {
+                    wrapper.classList.add("hidden");
+                }, 1000);
+            });
+
+            const eventoData = new Date("2026-08-21T19:00:00").getTime();
+
+            setInterval(() => {
+                const agora = new Date().getTime();
+                const distancia = eventoData - agora;
+
+                const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+
+                document.getElementById("tempo").innerHTML =
+                    `${dias} dias • ${horas}h • ${minutos}min`;
+            }, 1000);
+        </script>
+
+    </body>
+</html>
