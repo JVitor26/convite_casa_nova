@@ -23,9 +23,27 @@
                 <p class="subtitulo">Uma nova etapa, um novo lar, e você faz parte disso 💛</p>
             </div>
             <div class="contador">
-                Faltam <span id="tempo"></span> para o grande dia 🎉
+                <div class="tempo-box">
+                    <span id="dias">00</span>
+                    <small>Dias</small>
+                </div>
+
+                <div class="tempo-box">
+                    <span id="horas">00</span>
+                    <small>Horas</small>
+                </div>
+
+                <div class="tempo-box">
+                    <span id="minutos">00</span>
+                    <small>Min</small>
+                </div>
+
+                <div class="tempo-box">
+                    <span id="segundos">00</span>
+                    <small>Seg</small>
+                </div>
             </div>
-                        <div class="detalhes">
+            <div class="detalhes">
                 <h1>Convite de Casa Nova</h1>
                 <p>Estamos muito felizes em anunciar que nos mudamos para uma nova casa! Gostaríamos de convidar você para celebrar conosco essa nova etapa da nossa vida.</p>
                 <p>Data: [Data do Evento]</p>
@@ -40,26 +58,38 @@
             <div class="confirmacao">
                 <h2>Confirme sua presença</h2>
 
-                <form>
-                    <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                <form class="form-elegante">
 
-                    <select name="acompanhantes">
-                        <option value="">Acompanhantes</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
+                    <div class="campo">
+                        <label for="nome">Seu nome</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
 
-                    <select id="presenca" name="presenca" required>
-                        <option value="">Confirmar presença</option>
-                        <option value="sim">Sim, estarei presente</option>
-                        <option value="nao">Não poderei comparecer</option>
-                    </select>
+                    <div class="campo">
+                        <label for="acompanhantes">Acompanhantes</label>
+                        <select id="acompanhantes" name="acompanhantes">
+                            <option value="">Selecione</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="presenca">Confirmar presença</label>
+                        <select id="presenca" name="presenca" required>
+                            <option value="">Selecione</option>
+                            <option value="sim">Sim, estarei presente</option>
+                            <option value="nao">Não poderei comparecer</option>
+                        </select>
+                    </div>
 
                     <button type="submit">Enviar Confirmação</button>
+
                 </form>
+
                 <div class="mensagem-sucesso" id="mensagemSucesso">
                     🎉 Presença confirmada com sucesso!
                 </div>
@@ -72,46 +102,6 @@
                 Lista de Presentes 🎁
                 </a> 
         </div>
-        <script>
-            const form = document.querySelector("form");
-            const mensagem = document.getElementById("mensagemSucesso");
-
-            form.addEventListener("submit", function(e){
-                e.preventDefault();
-
-                mensagem.classList.add("ativo");
-
-                form.reset();
-
-                setTimeout(() => {
-                    mensagem.classList.remove("ativo");
-                }, 4000);
-            });
-
-            const envelope = document.getElementById("envelope");
-            const wrapper = document.getElementById("envelopeWrapper");
-
-            envelope.addEventListener("click", () => {
-                envelope.classList.add("aberto");
-                setTimeout(() => {
-                    wrapper.classList.add("hidden");
-                }, 1000);
-            });
-
-            const eventoData = new Date("2026-08-21T19:00:00").getTime();
-
-            setInterval(() => {
-                const agora = new Date().getTime();
-                const distancia = eventoData - agora;
-
-                const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-
-                document.getElementById("tempo").innerHTML =
-                    `${dias} dias • ${horas}h • ${minutos}min`;
-            }, 1000);
-        </script>
-
+        <script src="script.js"></script>
     </body>
 </html>
