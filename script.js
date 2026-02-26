@@ -6,44 +6,44 @@ const wrapper = document.getElementById("envelopeWrapper");
 // ==========================
 // ENVIO DO FORMULÁRIO
 // ==========================
-form.addEventListener("submit", async function (e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  try {
-    const nome = document.getElementById("nome").value;
-    const acompanhantes = document.getElementById("acompanhantes").value;
-    const presenca = document.getElementById("presenca").value;
+  const nome = document.getElementById("nome").value;
+  const acompanhantes = document.getElementById("acompanhantes").value;
+  const presenca = document.getElementById("presenca").value;
 
-    const dados = { nome, acompanhantes, presenca };
+  const dados = { nome, acompanhantes, presenca };
 
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbz3J-Sp7x-nPWZSLvkaJ-NvdqpdcBKBtQFRZNQjMB6caT1KjODcN-gPhfF3FksxwEs4/exec",
-      {
-        method: "POST",
-        mode: "no-cors", // 👈 ESSA LINHA É OBRIGATÓRIA
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dados),
-      }
-    );
+  // Envia os dados para o Google Script (no-cors)
+  fetch(
+    "https://script.google.com/macros/s/AKfycbz3J-Sp7x-nPWZSLvkaJ-NvdqpdcBKBtQFRZNQjMB6caT1KjODcN-gPhfF3FksxwEs4/exec",
+    {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dados),
+    }
+  );
 
-    // Mostra mensagem de sucesso
-    mensagem.classList.add("ativo");
+  // Mostra a mensagem de sucesso
+  mensagem.classList.add("ativo");
+  form.reset();
 
-    form.reset();
+  // Abre o envelope automaticamente
+  envelope.classList.add("aberto");
+  setTimeout(() => {
+    wrapper.classList.add("hidden");
+  }, 1000);
 
-    setTimeout(() => {
-      mensagem.classList.remove("ativo");
-    }, 4000);
-  } catch (error) {
-    alert("Erro ao enviar confirmação ❌");
-    console.error(error);
-  }
+  // Remove a mensagem após 4 segundos
+  setTimeout(() => {
+    mensagem.classList.remove("ativo");
+  }, 4000);
 });
 
 // ==========================
-// ANIMAÇÃO DO ENVELOPE
+// ANIMAÇÃO DO ENVELOPE (manual também)
 // ==========================
 envelope.addEventListener("click", () => {
   envelope.classList.add("aberto");
@@ -73,11 +73,6 @@ setInterval(() => {
 
   document.getElementById("dias").textContent = dias.toString().padStart(2, "0");
   document.getElementById("horas").textContent = horas.toString().padStart(2, "0");
-  document.getElementById("minutos").textContent = minutos.toString().padStart(
-    2,
-    "0"
-  );
-  document.getElementById("segundos").textContent = segundos
-    .toString()
-    .padStart(2, "0");
+  document.getElementById("minutos").textContent = minutos.toString().padStart(2, "0");
+  document.getElementById("segundos").textContent = segundos.toString().padStart(2, "0");
 }, 1000);
