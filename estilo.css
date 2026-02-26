@@ -112,28 +112,49 @@ body::after{
     color: #1d1d1f;
 }
 
-/* Form */
-form{
+.form-elegante{
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 28px; /* mais espaçamento */
+    margin-top: 30px;
 }
 
-/* Inputs */
-input, select{
-    padding: 15px;
-    border-radius: 16px;
+/* Cada campo separado */
+.campo{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Labels */
+.campo label{
+    font-size: 14px;
+    font-weight: 500;
+    color: #6e6e73;
+}
+
+/* Inputs e selects */
+.form-elegante input,
+.form-elegante select{
+    padding: 16px;
+    border-radius: 18px;
     border: 1px solid #d2d2d7;
     font-size: 15px;
+    background: #fff;
     transition: all 0.25s ease;
-    background-color: #fff;
 }
 
-input:focus, select:focus{
+/* Focus suave estilo Apple */
+.form-elegante input:focus,
+.form-elegante select:focus{
     border-color: #0071e3;
-    box-shadow: 0 0 0 4px rgba(0,113,227,0.15);
+    box-shadow: 0 0 0 4px rgba(0,113,227,0.12);
     outline: none;
-    transform: scale(1.02);
+}
+
+/* Botão só do formulário */
+.form-elegante button{
+    margin-top: 10px;
 }
 
 /* Botão principal */
@@ -167,36 +188,6 @@ button:active{
 
 .container > div:last-child button:hover{
     background-color: #e5e5ea;
-}
-
-/* Tabela */
-table{
-    margin-top: 30px;
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    animation: fadeUp 1.4s ease;
-}
-
-thead{
-    background-color: #f5f5f7;
-}
-
-th, td{
-    padding: 14px;
-    text-align: center;
-    font-size: 14px;
-}
-
-tbody tr{
-    border-top: 1px solid #e5e5ea;
-    transition: background 0.2s ease;
-}
-
-tbody tr:hover{
-    background-color: #f2f2f5;
 }
 
 /* Header elegante */
@@ -304,10 +295,41 @@ tbody tr:hover{
 }
 
 .contador{
-    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.tempo-box{
+    background: #ffffff;
+    padding: 22px 18px;
+    border-radius: 20px;
+    min-width: 80px;
+    text-align: center;
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.05),
+        0 2px 4px rgba(0,0,0,0.03);
+    transition: all 0.3s ease;
+}
+
+.tempo-box:hover{
+    transform: translateY(-4px);
+}
+
+.tempo-box span{
+    display: block;
+    font-size: 28px;
     font-weight: 600;
-    color: #0071e3;
-    font-size: 18px;
+    color: #1d1d1f;
+    transition: transform 0.2s ease;
+}
+
+.tempo-box small{
+    font-size: 13px;
+    color: #6e6e73;
+    letter-spacing: 0.5px;
 }
 
 .botao-link{
