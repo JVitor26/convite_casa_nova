@@ -20,7 +20,7 @@ form.addEventListener("submit", async function(e){
     };
 
     try {
-        await fetch("AKfycbzmp7V1G2zBLEAPAkp7rEPkaF3ex3gYJHMyU3s0qUQkV7B7qbF5oy4js00DbDM1I7QW", {
+        await fetch("https://script.google.com/macros/s/AKfycbz3J-Sp7x-nPWZSLvkaJ-NvdqpdcBKBtQFRZNQjMB6caT1KjODcN-gPhfF3FksxwEs4/exec", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
