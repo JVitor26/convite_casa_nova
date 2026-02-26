@@ -7,13 +7,20 @@
 body{
     font-family: -apple-system, BlinkMacSystemFont, 
                  "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-    background: url(imagens/fundo.png) no-repeat center center fixed;
+    background: url("imagens/fundo.png") no-repeat center center;
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 30px;
+}
+
+/* Apenas desktop */
+@media (min-width: 1024px){
+    body{
+        background-attachment: fixed;
+    }
 }
 
 /* Container */
