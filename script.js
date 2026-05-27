@@ -5,6 +5,7 @@ const wrapper = document.getElementById("envelopeWrapper");
 const canvas = document.getElementById("luxCanvas");
 const ctx = canvas ? canvas.getContext("2d") : null;
 const eventoData = new Date("2026-07-12T14:00:00").getTime();
+const scriptUrl = "https://script.google.com/macros/s/AKfycbz3J-Sp7x-nPWZSLvkaJ-NvdqpdcBKBtQFRZNQjMB6caT1KjODcN-gPhfF3FksxwEs4/exec";
 
 let conviteAberto = false;
 let particles = [];
@@ -68,33 +69,33 @@ atualizarContador();
 setInterval(atualizarContador, 1000);
 
 if (form && mensagem) {
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const botao = form.querySelector("button[type='submit']");
     const nome = document.getElementById("nome").value.trim();
     const acompanhantes = document.getElementById("acompanhantes").value;
     const presenca = document.getElementById("presenca").value;
-    const dados = { nome, acompanhantes, presenca };
+    const dados = {
+      nome,
+      acompanhantes,
+      presenca,
+      enviadoEm: new Date().toISOString(),
+    };
 
     if (botao) {
       botao.classList.add("enviando");
       botao.disabled = true;
     }
 
-    fetch(
-      "https://script.google.com/macros/s/AKfycbz3J-Sp7x-nPWZSLvkaJ-NvdqpdcBKBtQFRZNQjMB6caT1KjODcN-gPhfF3FksxwEs4/exec",
-      {
+    try {
+      await fetch(scriptUrl, {
         method: "POST",
         mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(dados),
-      }
-    ).catch(() => {
-      // O modo no-cors não permite ler a resposta. Mantemos o retorno visual para o convidado.
-    });
+      });
 
-    setTimeout(() => {
       mensagem.textContent = presenca === "nao"
         ? "Resposta registrada. Obrigado por avisar."
         : "Presença registrada. Obrigado por confirmar.";
@@ -108,7 +109,15 @@ if (form && mensagem) {
         botao.classList.remove("enviando");
         botao.disabled = false;
       }
-    }, 700);
+    } catch (erro) {
+      mensagem.textContent = "Não foi possível enviar agora. Tente novamente.";
+      mensagem.classList.add("ativo");
+
+      if (botao) {
+        botao.classList.remove("enviando");
+        botao.disabled = false;
+      }
+    }
 
     setTimeout(() => {
       mensagem.classList.remove("ativo");
