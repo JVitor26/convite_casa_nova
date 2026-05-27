@@ -3,105 +3,166 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Convite de casa nova</title>
+        <title>Convite de Casa Nova</title>
         <link rel="stylesheet" href="estilo.css">
     </head>
     <body>
+        <canvas id="luxCanvas" aria-hidden="true"></canvas>
+
         <div class="envelope-wrapper" id="envelopeWrapper">
-            <div class="envelope" id="envelope">
-                <div class="flap"></div>
-                <div class="letter">
-                    <p>Você recebeu um convite especial 💌</p>
-                    <span>Clique para abrir</span>
-                </div>
-            </div>
+            <div class="intro-sheen" aria-hidden="true"></div>
+            <button class="envelope" id="envelope" type="button" aria-label="Abrir convite">
+                <span class="envelope-shadow" aria-hidden="true"></span>
+                <span class="envelope-body" aria-hidden="true"></span>
+                <span class="envelope-flap envelope-flap-top" aria-hidden="true"></span>
+                <span class="envelope-flap envelope-flap-left" aria-hidden="true"></span>
+                <span class="envelope-flap envelope-flap-right" aria-hidden="true"></span>
+                <span class="letter">
+                    <span class="letter-seal" aria-hidden="true">CN</span>
+                    <span class="letter-title">Convite reservado</span>
+                    <span class="letter-action">Toque para abrir</span>
+                </span>
+            </button>
         </div>
-        <div class="container">
-            <div class="convite-header">
-                <div class="brilho"></div>
-                <h1>Convite de Casa Nova</h1>
-                <p class="subtitulo">Uma nova etapa, um novo lar, e você faz parte disso 💛</p>
-            </div>
-            <div class="contador">
+
+        <main class="container" id="convite">
+            <header class="convite-header reveal">
+                <div class="hero-media" aria-hidden="true">
+                    <span class="hero-photo"></span>
+                    <span class="hero-monogram">CN</span>
+                    <span class="hero-date">12.07.2026</span>
+                </div>
+                <span class="kicker">Celebração íntima de casa nova</span>
+                <h1>Casa Nova</h1>
+                <p class="subtitulo">Uma nova etapa, um novo lar, e a sua presença faz parte desse brinde.</p>
+                <div class="header-line" aria-hidden="true"></div>
+            </header>
+
+            <section class="contador reveal" aria-label="Contagem regressiva para o evento">
                 <div class="tempo-box">
                     <span id="dias">00</span>
                     <small>Dias</small>
                 </div>
-
                 <div class="tempo-box">
                     <span id="horas">00</span>
                     <small>Horas</small>
                 </div>
-
                 <div class="tempo-box">
                     <span id="minutos">00</span>
                     <small>Min</small>
                 </div>
-
                 <div class="tempo-box">
                     <span id="segundos">00</span>
                     <small>Seg</small>
                 </div>
-            </div>
-            <div class="detalhes">
-                <h1>Convite de Casa Nova</h1>
-                <p>Estamos muito felizes em anunciar que nos mudamos para uma nova casa! Gostaríamos de convidar você para celebrar conosco essa nova etapa da nossa vida.</p>
-                <p>Data: [Data do Evento]</p>
-                <p>Hora: [Hora do Evento]</p>
-                <p>Endereço: [Endereço da Nova Casa]</p>
-                <p>Será uma oportunidade maravilhosa para nos reunirmos, compartilharmos risadas e criarmos memórias inesquecíveis. Esperamos contar com a sua presença para tornar esse momento ainda mais especial.</p>
-                <p>Por favor, confirme sua presença até [Data de Confirmação] para que possamos organizar tudo da melhor forma possível.</p>
-                <p>Aguardamos ansiosamente para celebrar juntos!</p>
-            </div>
-            
+            </section>
 
-            <div class="confirmacao">
+            <section class="detalhes reveal">
+                <span class="section-label">O convite</span>
+                <h2>Venha celebrar essa conquista conosco</h2>
+                <p>Preparamos uma noite acolhedora para reunir pessoas especiais, brindar o novo endereço e transformar esse começo em memória.</p>
+                <div class="guest-notes" aria-label="Recados importantes">
+                    <p class="guest-note">Teremos piscina durante a celebração. Quem quiser aproveitar pode levar roupa de banho.</p>
+                    <p class="guest-note">No local terá lanche da tarde. Para as bebidas, cada pessoa pode levar o que preferir beber.</p>
+                </div>
+
+                <div class="info-grid" aria-label="Informacoes do evento">
+                    <div class="info-item">
+                        <small>Data</small>
+                        <strong>12 de Julho de 2026</strong>
+                    </div>
+                    <div class="info-item">
+                        <small>Horário</small>
+                        <strong>14h</strong>
+                    </div>
+                    <div class="info-item info-pool">
+                        <small>Piscina</small>
+                        <strong>Pode trazer roupa de banho</strong>
+                    </div>
+                    <div class="info-item info-drink">
+                        <small>Bebidas</small>
+                        <strong>Leve o que for beber</strong>
+                    </div>
+                    <div class="info-item info-snack">
+                        <small>Lanche</small>
+                        <strong>Terá lanche da tarde no local</strong>
+                    </div>
+                    <div class="info-item info-address">
+                        <small>Endereço</small>
+                        <strong>Rua Coronel Adalto Barbosa, nº 2095, Bairro Santa Emília</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="experiencia reveal" aria-label="Programacao da noite">
+                <span class="section-label">No Evento</span>
+                <div class="timeline">
+                    <div class="timeline-step">
+                        <span>01</span>
+                        <p>Recepção com boas-vindas</p>
+                    </div>
+                    <div class="timeline-step">
+                        <span>02</span>
+                        <p>Piscina, lanche da tarde e brinde ao novo lar</p>
+                    </div>
+                    <div class="timeline-step">
+                        <span>03</span>
+                        <p>Conversa, risadas e memórias</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="confirmacao reveal">
+                <span class="section-label">RSVP</span>
                 <h2>Confirme sua presença</h2>
 
                 <form class="form-elegante">
-
                     <div class="campo">
                         <label for="nome">Seu nome</label>
-                        <input type="text" id="nome" name="nome" required>
+                        <input type="text" id="nome" name="nome" autocomplete="name" required>
                     </div>
 
-                    <div class="campo">
-                        <label for="acompanhantes">Acompanhantes</label>
-                        <select id="acompanhantes" name="acompanhantes">
-                            <option value="">Selecione</option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
+                    <div class="campo-duplo">
+                        <div class="campo">
+                            <label for="acompanhantes">Acompanhantes</label>
+                            <select id="acompanhantes" name="acompanhantes">
+                                <option value="">Selecione</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+
+                        <div class="campo">
+                            <label for="presenca">Presença</label>
+                            <select id="presenca" name="presenca" required>
+                                <option value="">Selecione</option>
+                                <option value="sim">Sim, estarei presente</option>
+                                <option value="nao">Não poderei comparecer</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="campo">
-                        <label for="presenca">Confirmar presença</label>
-                        <select id="presenca" name="presenca" required>
-                            <option value="">Selecione</option>
-                            <option value="sim">Sim, estarei presente</option>
-                            <option value="nao">Não poderei comparecer</option>
-                        </select>
-                    </div>
-
-                    <button type="submit">Enviar Confirmação</button>
-
+                    <button class="botao-premium" type="submit">
+                        <span>Enviar confirmação</span>
+                    </button>
                 </form>
 
-                <div class="mensagem-sucesso" id="mensagemSucesso">
-                    🎉 Presença confirmada com sucesso!
+                <div class="mensagem-sucesso" id="mensagemSucesso" role="status" aria-live="polite">
+                    Presença registrada. Obrigado por confirmar.
                 </div>
+            </section>
 
-            </div>
-                <a href="https://lista.havan.com.br/Convidado/ItensListaPresente/916301"
+            <a href="https://lista.havan.com.br/Convidado/ItensListaPresente/916301"
                 class="botao-link"
                 target="_blank"
                 rel="noopener noreferrer">
-                Lista de Presentes 🎁
-                </a> 
-        </div>
+                <span>Lista de presentes</span>
+            </a>
+        </main>
+
         <script src="script.js"></script>
     </body>
 </html>
